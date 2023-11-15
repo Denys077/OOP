@@ -50,3 +50,53 @@ void Abiturient::displayInfo() const {
     std::cout << "Номер сертифікату ЗНО: " << ZNOCertificateNumber << std::endl;
     std::cout << "Пін-код сертифікату ЗНО: " << ZNOPinCode << std::endl;
 }
+
+std::istream& operator>>(std::istream& input, Abiturient& abiturient)
+{
+    std::cout << "Enter Abiturient information:" << std::endl;
+
+    std::cout << "ID: ";
+    input >> abiturient.id;
+
+    std::cout << "Surname: ";
+    input >> abiturient.surname;
+
+    std::cout << "Name: ";
+    input >> abiturient.name;
+
+    std::cout << "Patronymic: ";
+    input >> abiturient.patronymic;
+
+    std::cout << "Address: ";
+    input.ignore(); // Ignore the newline character left in the buffer
+    std::getline(input, abiturient.address);
+
+    std::cout << "Phone: ";
+    input >> abiturient.phone;
+
+    std::cout << "Year of ZNO: ";
+    input >> abiturient.yearOfZNO;
+
+    std::cout << "ZNO Certificate Number: ";
+    input >> abiturient.ZNOCertificateNumber;
+
+    std::cout << "ZNO Pin Code: ";
+    input >> abiturient.ZNOPinCode;
+
+    return input;
+}
+
+std::ostream& operator<<(std::ostream& output, const Abiturient& abiturient)
+{
+    output << "ID: " << abiturient.id << std::endl;
+    output << "Surname: " << abiturient.surname << std::endl;
+    output << "Name: " << abiturient.name << std::endl;
+    output << "Patronymic: " << abiturient.patronymic << std::endl;
+    output << "Address: " << abiturient.address << std::endl;
+    output << "Phone: " << abiturient.phone << std::endl;
+    output << "Year of ZNO: " << abiturient.yearOfZNO << std::endl;
+    output << "ZNO Certificate Number: " << abiturient.ZNOCertificateNumber << std::endl;
+    output << "ZNO Pin Code: " << abiturient.ZNOPinCode << std::endl;
+
+    return output;
+}
