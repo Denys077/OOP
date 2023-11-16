@@ -13,10 +13,9 @@ public:
 
     ~Abiturient(); // Destructor
 
-     void displayInfo() const override;
+    void displayInfo() const override;
 
     friend std::istream& operator>>(std::istream& input, Abiturient& abiturient);
-    friend std::ostream& operator<<(std::ostream& output, const Abiturient& abiturient);
 
 private:
     // Additional fields for Abiturient

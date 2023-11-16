@@ -13,6 +13,7 @@ public:
     ~Student(); // Destructor
 
     void displayInfo() const override;
+    friend std::istream& operator>>(std::istream& input, Student& student);
 
 private:
     // Additional fields for Student

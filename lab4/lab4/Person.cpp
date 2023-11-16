@@ -20,3 +20,27 @@ void Person::displayInfo() const {
         << "Address: " << address << "\n"
         << "Phone: " << phone << "\n";
 }
+
+std::istream& operator>>(std::istream& input, Person& person)
+{
+    std::cout << "Enter ID: ";
+    input >> person.id;
+
+    std::cout << "Enter Surname: ";
+    input.ignore(); // Ignore newline left in the buffer
+    std::getline(input, person.surname);
+
+    std::cout << "Enter Name: ";
+    std::getline(input, person.name);
+
+    std::cout << "Enter Father's Name: ";
+    std::getline(input, person.fatherName);
+
+    std::cout << "Enter Address: ";
+    std::getline(input, person.address);
+
+    std::cout << "Enter Phone: ";
+    std::getline(input, person.phone);
+
+    return input;
+}

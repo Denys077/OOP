@@ -18,3 +18,22 @@ void Student::displayInfo() const {
         << "Course: " << course << "\n"
         << "Group: " << group << "\n";
 }
+
+std::istream& operator>>(std::istream& input, Student& student)
+{
+    
+
+    // Call the base class operator>> for common fields
+    input >> static_cast<Person&>(student);
+    std::cout << "Enter Faculty: ";
+    input.ignore(); // Ignore newline left in the buffer
+    std::getline(input, student.faculty);
+
+    std::cout << "Enter Course: ";
+    input >> student.course;
+
+    std::cout << "Enter Group: ";
+    input >> student.group;
+
+    return input;
+}
