@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+#include <istream>
 class Abiturient {
 public:
     Abiturient(); // конструктор за замовчуванням
@@ -15,6 +16,9 @@ public:
     ~Abiturient();
 
     void displayInfo() const;
+
+    friend std::istream&  operator>>(std::istream& input, Abiturient& abiturient);
+    friend std::ostream& operator<<(std::ostream& output, const Abiturient& abiturient);
 
 
 private:
