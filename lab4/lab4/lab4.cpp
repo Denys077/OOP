@@ -3,26 +3,58 @@
 #include "Abiturient.h"
 #include "Student.h"
 
+void displayMenu() {
+    std::cout << "Menu:\n"
+        << "1. Create Abiturient\n"
+        << "2. Create Student\n"
+        << "3. Exit\n";
+}
+
 int main() {
-    setlocale(LC_ALL, "ukr");
-    // Тестування класу Person
-    Person person(1, "Іванов", "Іван", "Іванович", "вул. Головна, 1", "123-456-7890");
-    std::cout << "Інформація про особу:\n";
-    person.displayInfo();
-    std::cout << "\n\n";
+    const int arraySize = 2;
+    Person* personArray[arraySize];
 
-    // Тестування класу Abiturient
-    Abiturient abiturient(2, "Петренко", "Марія", "Василівна", "вул. Дружби, 22", "987-654-3210",
-        2023, 789456, 123456, "Інженерія", 1, 101);
-    std::cout << "Інформація про абітурієнта:\n";
-    abiturient.displayInfo();
-    std::cout << "\n\n";
+    for (int i = 0; i < arraySize; ++i) {
+        displayMenu();
+        int choice;
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
-    // Тестування класу Student
-    Student student(3, "Ковальчук", "Роман", "Олександрович", "вул. Лісова, 33", "555-123-4567",
-        "Комп'ютерні науки", 2, 201);
-    std::cout << "Інформація про студента:\n";
-    student.displayInfo();
+        switch (choice) {
+        case 1: {
+            personArray[i] = new Abiturient();
+            std::cin >> *(dynamic_cast<Abiturient*>(personArray[i]));
+            break;
+        }
+        case 2: {
+            personArray[i] = new Student();
+            std::cin >> *(dynamic_cast<Student*>(personArray[i]));
+            break;
+        }
+        case 3: {
+            // Exit the loop
+            i = arraySize;
+            break;
+        }
+        default: {
+            std::cout << "Invalid choice. Please try again.\n";
+            --i; // To repeat the loop iteration
+            break;
+        }
+        }
+    }
+
+    std::cout << "\nData of created objects:\n";
+    // Call the purely virtual method using a loop
+    for (int i = 0; i < arraySize; ++i) {
+        personArray[i]->displayInfo();
+        std::cout << "\n";
+    }
+
+    // Clean up dynamically allocated memory
+    for (int i = 0; i < arraySize; ++i) {
+        delete personArray[i];
+    }
 
     return 0;
 }

@@ -13,7 +13,8 @@ public:
 
     virtual ~Person(); // Virtual destructor
 
-    virtual void displayInfo() const;
+    virtual void displayInfo() const = 0; // Pure virtual function
+    friend std::istream& operator>>(std::istream& input, Person& person);
 
 protected:
     // Common fields for both Person and Abiturient
